@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenCare Twin | AI Digital Twin for Sustainable Hospitals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #0f766e 0%, #134e4a 50%, #042f2e 100%); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+    .workflow-step { position: relative; }
+    .workflow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: 50%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, #14b8a6, #0d9488);
+      z-index: 0;
+    }
+    @media (max-width: 768px) {
+      .workflow-step:not(:last-child)::after { display: none; }
+    }
+    .tab-btn.active { background-color: #0f766e; color: white; }
+    .dashboard-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="bg-white/20 p-2 rounded-lg">
+            <i class="fas fa-hospital text-xl"></i>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold tracking-tight">GreenCare Twin</h1>
+            <p class="text-xs text-teal-100">AI Digital Twin for Sustainable Hospitals</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#core" class="hover:text-teal-200 transition">Core Idea</a>
+          <a href="#problem" class="hover:text-teal-200 transition">Problem</a>
+          <a href="#workflow" class="hover:text-teal-200 transition">Workflow</a>
+          <a href="#dashboard" class="hover:text-teal-200 transition">Dashboard</a>
+          <a href="#team" class="hover:text-teal-200 transition">Team</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="gradient-bg text-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 text-center">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-1.5 rounded-full text-sm mb-6">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Capstone Project • AI in Healthcare + Sustainability
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+        Balancing Patient Care<br />
+        <span class="text-teal-300">& Planetary Health</span>
+      </h2>
+      <p class="max-w-3xl mx-auto text-lg sm:text-xl text-teal-100 mb-10">
+        An AI-powered digital twin that helps hospitals deliver high-quality care while reducing carbon emissions, controlling costs, and protecting patient data.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#dashboard" class="bg-white text-teal-900 font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-teal-50 transition flex items-center gap-2">
+          <i class="fas fa-chart-line"></i> View Live Dashboard
+        </a>
+        <a href="#workflow" class="bg-teal-800/50 border border-teal-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-teal-800 transition flex items-center gap-2">
+          <i class="fas fa-project-diagram"></i> See Workflow
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CORE IDEA ========== -->
+  <section id="core" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-2">Project Essence</h3>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Core Idea</h2>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 max-w-4xl mx-auto border border-slate-100">
+        <p class="text-lg text-slate-700 leading-relaxed mb-8">
+          <strong class="text-teal-700">GreenCare Twin</strong> is a privacy-preserving AI-powered digital twin for hospitals that helps decision-makers simultaneously improve patient care, control costs, and reduce environmental impact.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="bg-teal-50 rounded-xl p-5 text-center card-hover">
+            <div class="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-brain text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Clinical Intelligence</h4>
+            <p class="text-sm text-slate-600">Predicts patient demand, length of stay, and clinical risks using AI</p>
+          </div>
+          <div class="bg-emerald-50 rounded-xl p-5 text-center card-hover">
+            <div class="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-leaf text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Sustainability Intelligence</h4>
+            <p class="text-sm text-slate-600">Calculates real carbon, energy & waste footprint via Life Cycle Assessment</p>
+          </div>
+          <div class="bg-cyan-50 rounded-xl p-5 text-center card-hover">
+            <div class="w-12 h-12 bg-cyan-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-balance-scale text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Smart Optimization</h4>
+            <p class="text-sm text-slate-600">Finds best decisions balancing care quality, cost, and carbon emissions</p>
+          </div>
+        </div>
+
+        <p class="mt-8 text-center text-slate-600 italic">
+          “An AI digital twin that helps hospitals deliver high-quality care in a financially and environmentally responsible way.”
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEM STATEMENT ========== -->
+  <section id="problem" class="py-16 sm:py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-2">The Challenge</h3>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Problem Statement</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-teal-600">
+          <p class="text-slate-700 leading-relaxed">
+            Hospitals face a dual and intensifying challenge: delivering high-quality patient care while drastically reducing their environmental footprint. Healthcare systems are responsible for a significant share of global greenhouse gas emissions, energy consumption, water use, and medical waste. At the same time, they must manage unpredictable patient demand, staff shortages, rising costs, and strict data privacy regulations.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-amber-500">
+          <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
+            <i class="fas fa-exclamation-triangle text-amber-500"></i> Current Limitations
+          </h4>
+          <p class="text-slate-700 leading-relaxed">
+            Current hospital management systems and AI solutions typically address these issues in isolation. Predictive models focus mainly on clinical outcomes without considering environmental impact. Sustainability initiatives often rely on static carbon accounting and fail to integrate real-time clinical and operational data. Existing optimization tools rarely balance clinical quality, cost, staff well-being, and carbon emissions simultaneously, and almost never do so under privacy-preserving constraints.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-rose-500">
+          <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
+            <i class="fas fa-search text-rose-500"></i> The Gap
+          </h4>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            Hospital decision-makers lack a unified, data-driven tool that can:
+          </p>
+          <ul class="space-y-2 text-slate-700">
+            <li class="flex items-start gap-2"><i class="fas fa-check-circle text-teal-600 mt-1"></i> Accurately forecast patient demand and clinical risks</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check-circle text-teal-600 mt-1"></i> Quantify the true environmental cost of clinical and operational decisions</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check-circle text-teal-600 mt-1"></i> Optimize resource allocation across multiple competing objectives</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check-circle text-teal-600 mt-1"></i> Protect sensitive patient and staff data while supporting strategic sustainability goals</li>
+          </ul>
+        </div>
+
+        <div class="bg-teal-700 text-white rounded-2xl shadow-lg p-8">
+          <h4 class="font-bold mb-3 flex items-center gap-2">
+            <i class="fas fa-lightbulb"></i> Our Solution
+          </h4>
+          <p class="leading-relaxed">
+            <strong>GreenCare Twin</strong> addresses this gap by developing a multi-objective decision-support system that combines clinical predictive analytics, life-cycle assessment (via openLCA), operations research optimization, and secure data management to enable hospitals to deliver resilient, high-quality, and environmentally responsible care.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WORKFLOW ========== -->
+  <section id="workflow" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h3 class="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-2">How It Works</h3>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Detailed Project Workflow</h2>
+        <p class="mt-3 text-slate-600 max-w-2xl mx-auto">End-to-end pipeline from data generation to decision support</p>
+      </div>
+
+      <!-- Workflow Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <!-- Step 1 -->
+        <div class="workflow-step relative z-10">
+          <div class="bg-white rounded-2xl shadow-lg p-6 h-full border border-slate-100 card-hover">
+            <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4">1</div>
+            <h4 class="font-bold text-lg mb-2">Data Generation</h4>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Synthea generates synthetic EHR data</li>
+              <li>• Energy & supply chain data</li>
+              <li>• openLCA impact factors</li>
+            </ul>
+            <div class="mt-4 text-xs font-medium text-teal-700 bg-teal-50 px-3 py-1 rounded-full inline-block">Synthea</div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="workflow-step relative z-10">
+          <div class="bg-white rounded-2xl shadow-lg p-6 h-full border border-slate-100 card-hover">
+            <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4">2</div>
+            <h4 class="font-bold text-lg mb-2">Clinical Intelligence</h4>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Patient demand forecasting</li>
+              <li>• Length-of-stay prediction</li>
+              <li>• Readmission & risk models</li>
+              <li>• Staffing requirements</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-1">
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">PyHealth</span>
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">Prophet</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="workflow-step relative z-10">
+          <div class="bg-white rounded-2xl shadow-lg p-6 h-full border border-slate-100 card-hover">
+            <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4">3</div>
+            <h4 class="font-bold text-lg mb-2">Sustainability + OR</h4>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Life Cycle Assessment</li>
+              <li>• Carbon & waste calculation</li>
+              <li>• Multi-objective optimization</li>
+              <li>• Pareto front generation</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-1">
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">openLCA</span>
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">PuLP + CVXPY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="workflow-step relative z-10">
+          <div class="bg-white rounded-2xl shadow-lg p-6 h-full border border-slate-100 card-hover">
+            <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-4">4</div>
+            <h4 class="font-bold text-lg mb-2">Dashboard & Strategy</h4>
+            <ul class="text-sm text-slate-600 space-y-1.5">
+              <li>• Interactive Tableau views</li>
+              <li>• Trade-off visualization</li>
+              <li>• Financial business case</li>
+              <li>• Adoption roadmap</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-1">
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">Tableau</span>
+              <span class="text-xs font-medium text-teal-700 bg-teal-50 px-2 py-1 rounded-full">Docker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Flow -->
+      <div class="bg-slate-900 text-white rounded-2xl p-8 sm:p-10 overflow-x-auto">
+        <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <i class="fas fa-sitemap text-teal-400"></i> End-to-End Data Flow
+        </h4>
+        <div class="font-mono text-sm sm:text-base leading-relaxed text-teal-100 whitespace-pre">
+Synthea (Synthetic Patients)
+        ↓
+   MySQL / PostgreSQL Database
+        ↓
+┌───────────────────┬────────────────────────────┐
+│   Member 1 (You)  │        Member 2            │
+│  Clinical AI      │  openLCA + Optimization    │
+│  PyHealth+Prophet │  PuLP + CVXPY              │
+└───────────────────┴────────────────────────────┘
+        ↓
+   Database (Results + Predictions)
+        ↓
+   Member 3 → Tableau Dashboard + Docker + Strategy
+        ↓
+   Hospital Decision Maker
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INTERACTIVE DASHBOARD ========== -->
+  <section id="dashboard" class="py-16 sm:py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-2">Live Prototype</h3>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Interactive Decision Dashboard</h2>
+        <p class="mt-3 text-slate-600">Simulated hospital digital twin — adjust priorities and explore trade-offs</p>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="dashboard-card p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase">Predicted Daily Patients</p>
+              <p class="text-2xl font-bold text-slate-900 mt-1" id="kpi-patients">142</p>
+            </div>
+            <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+              <i class="fas fa-user-injured"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-card p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase">Avg Length of Stay</p>
+              <p class="text-2xl font-bold text-slate-900 mt-1" id="kpi-los">4.8 <span class="text-sm font-normal">days</span></p>
+            </div>
+            <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center">
+              <i class="fas fa-bed"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-card p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase">Carbon Footprint</p>
+              <p class="text-2xl font-bold text-slate-900 mt-1" id="kpi-carbon">2,840 <span class="text-sm font-normal">kg CO₂e</span></p>
+            </div>
+            <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
+              <i class="fas fa-cloud"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-card p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase">Est. Daily Cost</p>
+              <p class="text-2xl font-bold text-slate-900 mt-1" id="kpi-cost">$48,200</p>
+            </div>
+            <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls + Charts -->
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Priority Controls -->
+        <div class="dashboard-card p-6">
+          <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fas fa-sliders-h text-teal-600"></i> Decision Priorities
+          </h4>
+          <p class="text-sm text-slate-500 mb-5">Adjust the weight of each objective. The optimizer will rebalance recommendations.</p>
+
+          <div class="space-y-5">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium">Clinical Quality</span>
+                <span id="val-clinical" class="text-teal-700 font-semibold">40%</span>
+              </div>
+              <input type="range" id="slider-clinical" min="10" max="70" value="40" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-teal-600" />
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium">Cost Control</span>
+                <span id="val-cost" class="text-teal-700 font-semibold">30%</span>
+              </div>
+              <input type="range" id="slider-cost" min="10" max="70" value="30" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-500" />
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium">Carbon Reduction</span>
+                <span id="val-carbon" class="text-teal-700 font-semibold">30%</span>
+              </div>
+              <input type="range" id="slider-carbon" min="10" max="70" value="30" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
+            </div>
+          </div>
+
+          <button id="btn-optimize" class="mt-6 w-full bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+            <i class="fas fa-cogs"></i> Run Optimization
+          </button>
+
+          <div id="recommendation" class="mt-5 p-4 bg-teal-50 rounded-xl text-sm text-teal-900 hidden">
+            <p class="font-semibold mb-1">Recommended Action:</p>
+            <p id="rec-text">Shift 12% of elective procedures to lower-carbon pathways and adjust nurse rostering for predicted demand peak on Thursday.</p>
+          </div>
+        </div>
+
+        <!-- Pareto Chart -->
+        <div class="dashboard-card p-6 lg:col-span-2">
+          <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fas fa-chart-area text-teal-600"></i> Trade-off Frontier (Pareto)
+          </h4>
+          <p class="text-sm text-slate-500 mb-4">Each point is a feasible solution. Closer to top-left is better (high care quality, low carbon).</p>
+          <div class="h-72">
+            <canvas id="paretoChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Charts -->
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <div class="dashboard-card p-6">
+          <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fas fa-chart-line text-teal-600"></i> 7-Day Patient Demand Forecast
+          </h4>
+          <div class="h-64">
+            <canvas id="demandChart"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-card p-6">
+          <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fas fa-leaf text-teal-600"></i> Carbon Breakdown by Category
+          </h4>
+          <div class="h-64">
+            <canvas id="carbonChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM ========== -->
+  <section id="team" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h3 class="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-2">Collaboration</h3>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Team Division</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-teal-600 card-hover">
+          <div class="w-12 h-12 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-1">Member 1 – You</h4>
+          <p class="text-sm text-teal-700 font-medium mb-3">Healthcare & Clinical AI</p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Synthea + PyHealth models</li>
+            <li>• Demand & LOS forecasting</li>
+            <li>• Clinical risk prediction</li>
+            <li>• Fairness constraints</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-emerald-600 card-hover">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-1">Member 2</h4>
+          <p class="text-sm text-emerald-700 font-medium mb-3">Sustainability & Operations Research</p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• openLCA impact models</li>
+            <li>• Multi-objective optimization</li>
+            <li>• PuLP + CVXPY models</li>
+            <li>• Pareto front analysis</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-cyan-600 card-hover">
+          <div class="w-12 h-12 bg-cyan-100 text-cyan-700 rounded-xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-1">Member 3</h4>
+          <p class="text-sm text-cyan-700 font-medium mb-3">System, Security & Strategy</p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• MySQL + Docker</li>
+            <li>• Tableau dashboard</li>
+            <li>• Privacy & security layer</li>
+            <li>• Financial & strategic roadmap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="gradient-bg text-white py-10">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <i class="fas fa-hospital text-2xl"></i>
+        <span class="text-xl font-bold">GreenCare Twin</span>
+      </div>
+      <p class="text-teal-100 text-sm max-w-xl mx-auto">
+        A multi-disciplinary capstone project integrating AI in Healthcare, Management of Sustainability Development, Predictive Analytics, Operations Research, and Strategic Management.
+      </p>
+      <p class="mt-6 text-xs text-teal-300">© 2026 GreenCare Twin Capstone Team • Built for academic demonstration</p>
+    </div>
+  </footer>
+
+  <!-- ========== DASHBOARD LOGIC ========== -->
+  <script>
+    // --- Pareto Chart ---
+    const paretoCtx = document.getElementById('paretoChart').getContext('2d');
+    const paretoChart = new Chart(paretoCtx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Feasible Solutions',
+          data: [
+            {x: 3200, y: 72}, {x: 2950, y: 78}, {x: 2700, y: 82},
+            {x: 2500, y: 85}, {x: 2350, y: 87}, {x: 2200, y: 89},
+            {x: 2100, y: 90}, {x: 2050, y: 91}, {x: 1980, y: 91.5}
+          ],
+          backgroundColor: 'rgba(13, 148, 136, 0.7)',
+          borderColor: 'rgb(13, 148, 136)',
+          pointRadius: 6,
+          pointHoverRadius: 8
+        }, {
+          label: 'Selected Solution',
+          data: [{x: 2350, y: 87}],
+          backgroundColor: 'rgba(225, 29, 72, 0.9)',
+          borderColor: 'rgb(225, 29, 72)',
+          pointRadius: 9,
+          pointHoverRadius: 11
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: { display: true, text: 'Carbon Footprint (kg CO₂e / day)' },
+            reverse: false
+          },
+          y: {
+            title: { display: true, text: 'Clinical Quality Score' },
+            min: 65,
+            max: 95
+          }
+        },
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `Carbon: ${ctx.raw.x} kg | Quality: ${ctx.raw.y}`
+            }
+          }
+        }
+      }
+    });
+
+    // --- Demand Forecast Chart ---
+    const demandCtx = document.getElementById('demandChart').getContext('2d');
+    const demandChart = new Chart(demandCtx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Predicted Patients',
+          data: [128, 135, 142, 156, 149, 118, 105],
+          borderColor: 'rgb(13, 148, 136)',
+          backgroundColor: 'rgba(13, 148, 136, 0.1)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: false, title: { display: true, text: 'Patients' } }
+        }
+      }
+    });
+
+    // --- Carbon Breakdown Chart ---
+    const carbonCtx = document.getElementById('carbonChart').getContext('2d');
+    const carbonChart = new Chart(carbonCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Medical Supplies', 'Energy (HVAC & Lighting)', 'Pharmaceuticals', 'Waste Treatment', 'Staff Commute', 'Other'],
+        datasets: [{
+          data: [32, 24, 18, 12, 8, 6],
+          backgroundColor: [
+            '#0d9488', '#14b8a6', '#2dd4bf', '#5eead4', '#99f6e4', '#ccfbf1'
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } }
+        }
+      }
+    });
+
+    // --- Slider Logic ---
+    const sliderClinical = document.getElementById('slider-clinical');
+    const sliderCost = document.getElementById('slider-cost');
+    const sliderCarbon = document.getElementById('slider-carbon');
+    const valClinical = document.getElementById('val-clinical');
+    const valCost = document.getElementById('val-cost');
+    const valCarbon = document.getElementById('val-carbon');
+
+    function updateLabels() {
+      valClinical.textContent = sliderClinical.value + '%';
+      valCost.textContent = sliderCost.value + '%';
+      valCarbon.textContent = sliderCarbon.value + '%';
+    }
+    sliderClinical.addEventListener('input', updateLabels);
+    sliderCost.addEventListener('input', updateLabels);
+    sliderCarbon.addEventListener('input', updateLabels);
+
+    // --- Optimize Button ---
+    document.getElementById('btn-optimize').addEventListener('click', () => {
+      const c = parseInt(sliderClinical.value);
+      const co = parseInt(sliderCost.value);
+      const ca = parseInt(sliderCarbon.value);
+
+      // Simple simulated response
+      let rec = '';
+      if (ca >= 40) {
+        rec = 'Prioritize reusable surgical kits and shift 18% of non-urgent imaging to lower-energy time slots. Expected carbon reduction: ~11%.';
+        document.getElementById('kpi-carbon').textContent = '2,530 kg CO₂e';
+      } else if (c >= 45) {
+        rec = 'Increase ICU nurse-to-patient ratio during predicted Thursday peak. Maintain current supply chain. Clinical quality score rises to 91.';
+        document.getElementById('kpi-patients').textContent = '148';
+      } else {
+        rec = 'Optimize inventory of high-cost antibiotics and reduce overtime by 9% through smarter rostering. Estimated daily savings: $3,400.';
+        document.getElementById('kpi-cost').textContent = '$44,800';
+      }
+
+      document.getElementById('rec-text').textContent = rec;
+      document.getElementById('recommendation').classList.remove('hidden');
+
+      // Move selected point on Pareto
+      const newX = 2800 - (ca * 12);
+      const newY = 75 + (c * 0.25);
+      paretoChart.data.datasets[1].data = [{x: newX, y: newY}];
+      paretoChart.update();
+    });
+  </script>
+</body>
+</html>
